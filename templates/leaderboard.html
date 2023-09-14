@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/leaderboard.css">
+    <title>{{ .title }}</title>
+</head>
+
+<body>
+    <main>
+        <aside>
+            <div class="logo">
+                <h1>TalentForge</h1>
+            </div>
+            <nav class="menu">
+                <ul class="main-nav">
+                    <li><a href="/"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="/leaderboard"><i class="fas fa-chart-bar"></i> Leaderboards</a></li>
+                    <li><a href="#training"><i class="fas fa-book"></i> Training</a></li>
+                    <li><a href="#chat"><i class="fas fa-comments"></i> Chat</a></li>
+                    <li><a href="#employees"><i class="fas fa-users"></i> Employees</a></li>
+                </ul>
+                <ul class="sec-nav">
+                    <li><a href="#logout"><i class="fas fa-right-from-bracket"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <section>
+            <header>
+                <div class="search-container">
+                    <input type="text" placeholder="Search">
+                    <div class="filter-container">
+                        <button class="filter-button">Filters <i class="fas fa-filter"></i></button>
+                    </div>
+                    <button type="submit">Search</button>
+                </div>
+                <div class="profile-nav">
+                    <div class="notification"></div>
+                    <div class="my-profile"></div>
+                </div>
+            </header>
+            <div class="leaderboard">
+                <h1>Leaderboard</h1>
+
+                <!-- Cards for top 3 rankings -->
+                <div class="ranking-container">
+                    {{ range $i, $e := .ranking }}
+                    {{ if lt $i 3 }}
+                    <div class="card">
+                        <div class="card-employee">
+                            <div class="card-photo">
+                                <img src="../assets/images/employee-default-male.jpg" alt="Employee 1"
+                                    class="profile-image">
+                            </div>
+                            <div class="card-profile">
+                                <h3>#{{ .Ranking }} First Place</h3>
+                                <h3>{{ .FirstName }} {{ .LastName }}</h3>
+                                <p>{{ .Role }}</p>
+                            </div>
+                        </div>
+                        <div class="ranking">
+                            <p>{{ .Points }} Points</p>
+                        </div>
+                    </div>
+                    {{ end }}
+                    {{ end }}
+                </div>
+
+                <!-- Rankings 4 and onwards -->
+                <h3>Employee Rankings</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ranking</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ range .ranking }}
+                        <tr>
+                            <td>{{ .Ranking }}</td>
+                            <td>{{ .FirstName }} {{ .LastName }}</td>
+                            <td>{{ .Role }}</td>
+                            <td>{{ .Department }}</td>
+                            <td>{{ .Points }}</td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>

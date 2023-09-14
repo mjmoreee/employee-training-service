@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    color: #313338;
+}
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+main aside {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 15%;
+    height: 100vh;
+    background-color: #F8FAFB;
+    display: flex;
+    flex-direction: column;
+}
+
+main aside .logo {
+    margin-top: 20px;
+    text-align: center;
+}
+
+main section {
+    width: 85%;
+    padding: 20px 40px;
+}
+
+/* MAIN MENU */
+nav ul li {
+    list-style: none;
+    margin: 50px 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li a i {
+    margin-right: 10px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+/* Style header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 20px 0;
+    background-color: #fff;
+}
+
+.profile-nav {
+    display: flex;
+    align-items: center;
+}
+
+.profile-nav div {
+    margin-left: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.profile-nav div:hover {
+    text-decoration: underline;
+}
+
+.notification {
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.my-profile {
+    width: 40px;
+    height: 40px;
+    background-color: #3498db;
+    border-radius: 50%;
+}
+
+/* Style form pencarian */
+.search-container {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vh;
+}
+
+input[type="text"] {
+    width: 500px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    background-color: #d2e2f8;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Style menu filter */
+.filter-container {
+    display: flex;
+    margin-right: 10px;
+}
+
+.filter-button {
+    background-color: #f8ddd2;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.filter-button:hover {
+    background-color: #999;
+}
+
+/* Style card profil */
+.profiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start; 
+    gap: 20px;
+}
+
+.profile-card {
+    width: 350px;
+    margin: 20px 20px 0 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #F8FAFB;
+    text-align: center;
+}
+
+/* Style container */
+.profile-header {
+    display: flex;
+    align-items: start;
+    margin-bottom: 50px;
+}
+
+/* Style gambar profil bundar */
+.profile-img {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #2980b9;
+    margin-right: 20px;
+}
+
+.profile-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Style nama dan posisi */
+.profile-name {
+    flex: 1;
+    text-align: left;
+}
+
+.profile-name h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.profile-name p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Style ikon ellipsis */
+.fa-ellipsis-h {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Style card profile */
+.profile-card .card {
+    padding: 10px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-card .card .card-join {
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    padding: 0 15px;
+    margin-bottom: 20px;
+}
+
+.profile-card .card .card-join h4 {
+    font-size: 15px;
+}
+
+.profile-card .card .card-join {
+    line-height: 0.8;
+    font-size: 14px;
+}
+
+.profile-card .card .additional-info {
+    text-align: left;
+    padding: 0 15px;
+    line-height: 0.8;
+    font-size: 14px;
+}
+
+.profile-card .card .additional-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-card .card .additional-info ul li {
+    display: flex;
+    align-items: center;
+}
+
+.profile-card .card .additional-info ul li i {
+    margin-right: 10px;
+}
+
+.profile-card .card .additional-info ul li i p {
+    margin: 0;
+}
+
+/* ECLIPS */
+/* Tambahkan CSS untuk .ellipsis-menu */
+.ellipsis-menu {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tambahkan CSS untuk .menu-options */
+.menu-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    z-index: 1;
+}
+
+.menu-options li {
+    padding: 8px 10px;
+    text-align: center;
+}
+
+/* Tambahkan CSS untuk .menu-options a */
+.menu-options a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.menu-options a:hover {
+    background-color: #f2f2f2;
+}

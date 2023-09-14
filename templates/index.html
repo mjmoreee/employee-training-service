@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <title>Profil User</title>
+</head>
+
+<body>
+    <main>
+        <aside>
+            <div class="logo">
+                <h1>TalentForge</h1>
+            </div>
+            <nav class="menu">
+                <ul class="main-nav">
+                    <li><a href="/"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="/leaderboard"><i class="fas fa-chart-bar"></i> Leaderboards</a></li>
+                    <li><a href="#training"><i class="fas fa-book"></i> Training</a></li>
+                    <li><a href="#chat"><i class="fas fa-comments"></i> Chat</a></li>
+                    <li><a href="#employees"><i class="fas fa-users"></i> Employees</a></li>
+                </ul>
+                <ul class="sec-nav">
+                    <li><a href="#logout"><i class="fas fa-right-from-bracket"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <section>
+            <header>
+                <div class="search-container">
+                    <input type="text" placeholder="Search">
+                    <div class="filter-container">
+                        <button class="filter-button">Filters <i class="fas fa-filter"></i></button>
+                    </div>
+                    <button type="submit">Search</button>
+                </div>
+                <div class="profile-nav">
+                    <div class="notification"></div>
+                    <div class="my-profile"></div>
+                </div>
+            </header>
+            <div class="profiles">
+                {{ range .employee }}
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-img"><img src="{{ .ImagePath }}" alt="Foto Profil"></div>
+                        <div class="profile-name">
+                            <h3>{{ .FirstName }} {{.LastName}}</h3>
+                            <p>{{ .Role }}</p>
+                        </div>
+                        <div class="ellipsis-menu">
+                            <i class="fas fa-ellipsis-h" id="ellipsis-icon-{{ .EmployeeID }}"></i>
+                            <!-- Tampilkan menu options setiap kartu dengan id yang unik -->
+                            <ul class="menu-options" id="menu-options-{{ .EmployeeID }}" style="display: none;">
+                                <li><a href="#" id="view-profile">Lihat Profil</a></li>
+                                <li><a href="#" id="view-training">View Training</a></li>
+                                <li><a href="#" id="chat">Chat</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-join">
+                            <div class="department">
+                                <h4>Department</h4>
+                                <p>{{ .Department }}</p>
+                            </div>
+                            <div class="hired-date">
+                                <h4>Hired Date</h4>
+                                <p>{{ .HiredDate }}</p>
+                            </div>
+                        </div>
+                        <div class="additional-info">
+                            <ul>
+                                <li><i class="fas fa-envelope"></i>
+                                    <p>{{ .Email }}</p>
+                                </li>
+                                <li><i class="fas fa-phone"></i>
+                                    <p>{{ .Telephone }}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    // Tambahkan event listener untuk mengatur tampilan menu options saat mengklik ikon ellipsis
+                    document.getElementById("ellipsis-icon-{{ .EmployeeID }}").addEventListener("click", function () {
+                        var menuOptions = document.getElementById("menu-options-{{ .EmployeeID }}");
+
+                        if (menuOptions.style.display === "none" || menuOptions.style.display === "") {
+                            menuOptions.style.display = "block";
+                        } else {
+                            menuOptions.style.display = "none";
+                        }
+                        event.stopPropagation();
+                    });
+
+                    // Tambahkan event listener untuk menutup menu options saat mengklik di sembarang tempat
+                    document.addEventListener("click", function (event) {
+                        var menuOptions = document.getElementById("menu-options-{{ .EmployeeID }}");
+
+                        if (menuOptions && menuOptions.style.display === "block") {
+                            menuOptions.style.display = "none";
+                        }
+                    });
+                </script>
+                {{ end }}
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
