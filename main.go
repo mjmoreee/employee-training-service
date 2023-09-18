@@ -10,7 +10,7 @@ import (
 )
 
 type EmployeeData struct {
-	EmployeeID string
+	EmployeeID int
 	FirstName  string
 	LastName   string
 	Role       string
@@ -28,6 +28,13 @@ type RankingData struct {
 	Role       string
 	Department string
 	Points     int
+}
+
+type EmployeeDetail struct {
+	EmployeeID int
+	FirstName  string
+	LastName   string
+	// Informasi lainnya
 }
 
 // Execute query from database
@@ -115,8 +122,7 @@ func main() {
 	// Define the root route for the dashboard page
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title":    "Dashboard",
-			"employee": employeeData,
+			"title": "Dashboard",
 		})
 	})
 
@@ -125,6 +131,32 @@ func main() {
 		c.HTML(http.StatusOK, "leaderboard.html", gin.H{
 			"title":   "Leaderboard",
 			"ranking": rankingData,
+		})
+	})
+
+	// Define the 'leaderboard' route for the leaderboard page
+	router.GET("/employees", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "employees.html", gin.H{
+			"title":    "Employees",
+			"employee": employeeData,
+		})
+	})
+
+	// Define the 'leaderboard' route for the leaderboard page
+	router.GET("/employees/profile/:id", func(c *gin.Context) {
+		// Get ID
+		id := c.Param("id")
+
+		var employeeDetailData EmployeeDetail
+		err = db.QueryRow("SELECT employee_id, first_name, last_name FROM employee WHERE employee_id = ?", id).Scan(&employeeDetailData.EmployeeID, &employeeDetailData.FirstName, &employeeDetailData.LastName)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.HTML(http.StatusOK, "employees-details.html", gin.H{
+			"title":          "Employees' Detail",
+			"employeeDetail": employeeDetailData,
 		})
 	})
 
